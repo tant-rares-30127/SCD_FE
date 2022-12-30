@@ -1,22 +1,20 @@
+axios
+  .get("http://localhost:8083/employee")
+  .then((response) => {
+    return response.data;
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+  .then((data) => {
+    console.log(data);
+    const select = document.getElementById("employees");
 
-
-axios.get("http://localhost:8083/employee")
-        .then((response) => {
-          return response.data;
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-        .then((data) => {
-          console.log(data);
-          const select = document.getElementById('employees');
-
-          data.forEach(element => {
-            let newOption = new Option(element.name,'Option Value');
-            select.add(newOption,undefined); 
-          });
-           
-        });
+    data.forEach((element) => {
+      let newOption = new Option(element.name, "Option Value");
+      select.add(newOption, undefined);
+    });
+  });
 
 export default {
   data() {
@@ -29,7 +27,7 @@ export default {
     openModal() {
       var modal = document.getElementById("myModal");
       modal.style.display = "block";
-      window.onclick = function(event) {
+      window.onclick = function (event) {
         if (event.target == modal) {
           modal.style.display = "none";
         }

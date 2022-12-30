@@ -1,0 +1,29 @@
+#adminLabel {
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
+  font-weight: 900;
+  padding-bottom: 15px;
+}
+
+#sublabels {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.labelsContent {
+  display: flex;
+  align-items: center;
+}
+
+#dateLabels {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row;
+}
+
+.dateLabels {
+  font-size: 30px;
+  font-weight: 600;
+}

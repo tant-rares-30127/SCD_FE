@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width-device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width-device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie-edge" />
     <link rel="stylesheet" href="main.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script type="module" src="index.js"></script>
   </head>
 
   <body>
-    <div id="main">
-      <label>Admin Application</label>
+    <div>
       <div>
-        <label for="Employees">Choose an employee:</label>
-        <select name="Employees" id="employees"> </select>
+        <label id="adminLabel">Admin Application</label>
       </div>
-      <div>
-        <label>Start date:</label>
-        <input type="date">
-      </div>
-      <div>
-        <label>End date:</label>
-        <input type="date">
+      <div id="sublabels">
+        <div class="labelsContent">
+          <label for="Employees" class="dateLabels">Choose an employee:</label>
+          <select name="Employees" id="employees">
+            <option>All</option>
+          </select>
+        </div>
+        <div id="dateLabels">
+          <div class="labelsContent">
+            <label class="dateLabels">Start date:</label>
+            <input type="date" />
+          </div>
+          <div class="labelsContent">
+            <label class="dateLabels">End date:</label>
+            <input type="date" />
+          </div>
+        </div>
       </div>
     </div>
-    
   </body>
 </html>
