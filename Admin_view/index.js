@@ -9,6 +9,13 @@ axios.get("http://localhost:8083/employee")
         })
         .then((data) => {
           console.log(data);
+          const select = document.getElementById('employees');
+
+          data.forEach(element => {
+            let newOption = new Option(element.name,'Option Value');
+            select.add(newOption,undefined); 
+          });
+           
         });
 
 export default {
