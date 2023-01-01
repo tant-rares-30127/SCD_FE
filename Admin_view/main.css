@@ -27,3 +27,28 @@
   font-size: 30px;
   font-weight: 600;
 }
+
+.members-table {
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  width: 70rem;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  background-color: #96d4d4;
+}
+
+.bottom-row {
+  text-align: center;
+}
