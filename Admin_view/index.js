@@ -1,3 +1,5 @@
+var employeesList;
+
 axios
   .get("http://localhost:8083/employee")
   .then((response) => {
@@ -8,15 +10,41 @@ axios
   })
   .then((data) => {
     console.log(data);
+    employeesList = data;
     const select = document.getElementById("employees");
 
     data.forEach((element) => {
-      let newOption = new Option(element.name, "Option Value");
+      let newOption = new Option(element.name, element.id);
       select.add(newOption, undefined);
     });
 
     CreateTable(data);
   });
+
+document
+  .getElementById("employees")
+  .addEventListener("change", async function (e) {
+    employeesList.forEach((element) => {
+      if (element.id == e.target.value) {
+        ClearTable();
+        InsertElementInTable(element);
+      } else {
+        if (e.target.value == "All") {
+          ClearTable();
+          CreateTable(employeesList);
+        }
+      }
+    });
+  });
+
+function SendElement(elementSent) {
+  employeesList.forEach((element) => {
+    if (elementSent.options[elementSent.selectedIndex].text == element.name) {
+      ClearTable();
+      InsertElementInTable(element);
+    }
+  });
+}
 
 function CreateTable(memberList) {
   memberList.forEach((element) => {
@@ -36,4 +64,11 @@ function InsertElementInTable(element) {
   cell2.innerHTML = element.name;
   cell3.innerHTML = element.hourlyRate;
   cell4.innerHTML = element.enrollDate;
+}
+
+function ClearTable() {
+  var table = document.getElementById("table");
+  for (var i = table.rows.length - 1; i > 0; i--) {
+    table.deleteRow(i);
+  }
 }
