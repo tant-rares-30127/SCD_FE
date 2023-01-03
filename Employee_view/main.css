@@ -1,0 +1,15 @@
+#employeeLabel {
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
+  font-weight: 900;
+  padding-bottom: 15px;
+}
+
+#interior {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+}
