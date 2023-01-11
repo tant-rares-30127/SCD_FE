@@ -1,4 +1,6 @@
 package edu.utcn.timetracking.server.employee;
 
-public interface EmployeeHoursRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface EmployeeHoursRepository extends JpaRepository<EmployeeHours, Integer> {
 }
