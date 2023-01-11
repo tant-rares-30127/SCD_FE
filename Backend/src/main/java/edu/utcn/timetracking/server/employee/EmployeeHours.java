@@ -14,6 +14,8 @@ import java.util.Date;
 @Table(name = "EmployeeHours")
 public class EmployeeHours {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     @Column(updatable = false, nullable = false)

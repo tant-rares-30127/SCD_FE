@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @ApiModelProperty(hidden = true)
     private Integer id;
 
