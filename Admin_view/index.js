@@ -1,4 +1,5 @@
 var employeesList;
+var employeeHoursList;
 
 axios
   .get("http://localhost:8083/employee")
@@ -19,6 +20,21 @@ axios
     });
 
     CreateTable(data);
+  });
+
+axios
+  .get("http://localhost:8083/employeeHours")
+  .then((response) => {
+    return response.data;
+  })
+  .catch((error) => {
+    console.log(error);
+  })
+  .then((data) => {
+    console.log(data);
+    employeeHoursList = data;
+
+    //CreateHoursTable(data);
   });
 
 document
@@ -47,6 +63,12 @@ function SendElement(elementSent) {
 }
 
 function CreateTable(memberList) {
+  memberList.forEach((element) => {
+    InsertElementInTable(element);
+  });
+}
+
+function CreateHoursTable(memberList) {
   memberList.forEach((element) => {
     InsertElementInTable(element);
   });
