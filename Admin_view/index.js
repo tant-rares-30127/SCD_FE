@@ -33,8 +33,7 @@ axios
   .then((data) => {
     console.log(data);
     employeeHoursList = data;
-
-    //CreateHoursTable(data);
+    CalculateHours(employeesList, employeeHoursList);
   });
 
 document
@@ -104,4 +103,20 @@ function ClearTable() {
   for (var i = table.rows.length - 1; i > 0; i--) {
     table.deleteRow(i);
   }
+}
+
+function CalculateHours(employeesList, employeeHoursList) {
+  var total = 0;
+  employeesList.forEach((element) => {
+    employeeHoursList.forEach((element1) => {
+      if (element.name == element1.employee.name) {
+        var diff = Math.abs(
+          new Date(element1.checkOut) - new Date(element1.checkIn)
+        );
+        total = total + diff;
+      }
+    });
+    total = total / 3600;
+    document.getElementById("hours").innerHTML = Math.round(total);
+  });
 }

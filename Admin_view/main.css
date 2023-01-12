@@ -47,3 +47,9 @@ td {
 .bottom-row {
   text-align: center;
 }
+
+#total {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
