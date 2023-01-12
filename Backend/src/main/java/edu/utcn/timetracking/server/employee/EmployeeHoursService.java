@@ -17,6 +17,8 @@ public class EmployeeHoursService {
     }
 
     public List<EmployeeHours> findAllEmployeesHours(){
+        Employee employee = employeeHoursRepository.findAll().get(1).getEmployee();
+        System.out.println(employee.getName());
         return employeeHoursRepository.findAll();
     }
 }
