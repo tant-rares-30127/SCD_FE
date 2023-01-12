@@ -90,11 +90,13 @@ function InsertElementInTable(element) {
   if (element.name != null) cell2.innerHTML = element.name;
   else cell2.innerHTML = element.employee.name;
   if (element.name != null) cell3.innerHTML = element.hourlyRate;
-  else cell3.innerHTML = element.checkIn;
-  cell3.innerHTML = moment().format("MMMM Do YYYY, h:mm:ss A");
+  else {
+    cell3.innerHTML = element.checkIn;
+    cell3.innerHTML = moment(cell3.innerHTML).format("MMMM Do YYYY, h:mm:ss A");
+  }
   if (element.name != null) cell4.innerHTML = element.enrollDate;
   else cell4.innerHTML = element.checkOut;
-  cell4.innerHTML = moment().format("MMMM Do YYYY, h:mm:ss A");
+  cell4.innerHTML = moment(cell4.innerHTML).format("MMMM Do YYYY, h:mm:ss A");
 }
 
 function ClearTable() {
