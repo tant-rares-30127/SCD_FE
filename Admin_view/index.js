@@ -10,7 +10,6 @@ axios
     console.log(error);
   })
   .then((data) => {
-    console.log(data);
     employeesList = data;
     const select = document.getElementById("employees");
 
@@ -31,7 +30,6 @@ axios
     console.log(error);
   })
   .then((data) => {
-    console.log(data);
     employeeHoursList = data;
     CalculateHours(employeesList, employeeHoursList);
   });
@@ -45,12 +43,14 @@ document
         document.getElementById("c3").innerHTML = "Check-in";
         document.getElementById("c4").innerHTML = "Check-out";
         CreateHoursTable(employeeHoursList, element.name);
+        CalculateHoursEmployee(employeeHoursList, element.name);
       } else {
         if (e.target.value == "All") {
           ClearTable();
           document.getElementById("c3").innerHTML = "Hourly rate";
           document.getElementById("c4").innerHTML = "Enroll Date";
           CreateTable(employeesList);
+          CalculateHours(employeesList, employeeHoursList);
         }
       }
     });
@@ -113,10 +113,24 @@ function CalculateHours(employeesList, employeeHoursList) {
         var diff = Math.abs(
           new Date(element1.checkOut) - new Date(element1.checkIn)
         );
+        diff = diff / 3600000;
         total = total + diff;
       }
     });
-    total = total / 3600;
     document.getElementById("hours").innerHTML = Math.round(total);
   });
+}
+
+function CalculateHoursEmployee(employeeHoursList, name) {
+  var total = 0;
+  employeeHoursList.forEach((element) => {
+    if (name == element.employee.name) {
+      var diff = Math.abs(
+        new Date(element.checkOut) - new Date(element.checkIn)
+      );
+      diff = diff / 3600000;
+      total = total + diff;
+    }
+  });
+  document.getElementById("hours").innerHTML = Math.round(total);
 }
