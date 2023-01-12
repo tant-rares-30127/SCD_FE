@@ -44,11 +44,6 @@ td {
   border-collapse: collapse;
 }
 
-th,
-td {
-  background-color: #96d4d4;
-}
-
 .bottom-row {
   text-align: center;
 }
