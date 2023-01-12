@@ -10,19 +10,21 @@ document.getElementById("button").addEventListener("click", async function (e) {
     document.getElementById("check-out").innerHTML = moment().format(
       "MMMM Do YYYY, h:mm:ss A"
     );
+    var checkOut = new Date();
     document.getElementById("buttonReset").disabled = false;
     checkedIn = false;
     var id = document.getElementById("input").value;
+    console.log(checkin);
     axios.post(`http://localhost:8083/employeeHours/${id}`, {
       checkIn: checkin,
-      checkOut: moment(),
+      checkOut: checkOut,
     });
   } else {
     document.getElementById("button").innerHTML = "Check-out";
     document.getElementById("check-in").innerHTML = moment().format(
       "MMMM Do YYYY, h:mm:ss A"
     );
-    checkin = moment();
+    checkin = new Date();
     document.getElementById("check-out").innerHTML = "Didn't checked out";
     checkedIn = true;
   }
