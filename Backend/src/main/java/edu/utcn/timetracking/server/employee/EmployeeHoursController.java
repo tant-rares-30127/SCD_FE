@@ -13,10 +13,20 @@ public class EmployeeHoursController {
     @Autowired
     private EmployeeHoursService employeeHoursService;
 
-    @PostMapping
-    public EmployeeHours create(@RequestBody EmployeeHours employeeHours)
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+    @Autowired
+    private EmployeeHoursRepository employeeHoursRepository;
+
+    @PostMapping("/{employeeId}")
+    public EmployeeHours create(@PathVariable(value = "employeeId") Integer employeeId, @RequestBody EmployeeHours employeeHours)
     {
-        return employeeHoursService.create(employeeHours);
+        EmployeeHours employeeHours1 = employeeRepository.findById(employeeId).map(employee ->
+        {
+            employeeHours.setEmployee(employee);
+            return employeeHoursRepository.save(employeeHours); }).orElseThrow( RuntimeException::new );
+        return employeeHours1;
     }
 
     @GetMapping
