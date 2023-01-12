@@ -7,14 +7,14 @@ document.getElementById("input").addEventListener("click", async function (e) {
 document.getElementById("button").addEventListener("click", async function (e) {
   if (checkedIn) {
     document.getElementById("check-out").innerHTML = moment().format(
-      "MMMM Do YYYY, h:mm:ss a"
+      "MMMM Do YYYY, h:mm:ss A"
     );
     document.getElementById("buttonReset").disabled = false;
     checkedIn = false;
   } else {
     document.getElementById("button").innerHTML = "Check-out";
     document.getElementById("check-in").innerHTML = moment().format(
-      "MMMM Do YYYY, h:mm:ss a"
+      "MMMM Do YYYY, h:mm:ss A"
     );
     document.getElementById("check-out").innerHTML = "Didn't checked out";
     checkedIn = true;

@@ -43,10 +43,14 @@ document
     employeesList.forEach((element) => {
       if (element.id == e.target.value) {
         ClearTable();
-        InsertElementInTable(element);
+        document.getElementById("c3").innerHTML = "Check-in";
+        document.getElementById("c4").innerHTML = "Check-out";
+        CreateHoursTable(employeeHoursList, element.name);
       } else {
         if (e.target.value == "All") {
           ClearTable();
+          document.getElementById("c3").innerHTML = "Hourly rate";
+          document.getElementById("c4").innerHTML = "Enroll Date";
           CreateTable(employeesList);
         }
       }
@@ -68,9 +72,9 @@ function CreateTable(memberList) {
   });
 }
 
-function CreateHoursTable(memberList) {
+function CreateHoursTable(memberList, name) {
   memberList.forEach((element) => {
-    InsertElementInTable(element);
+    if (element.employee.name == name) InsertElementInTable(element);
   });
 }
 
@@ -83,9 +87,14 @@ function InsertElementInTable(element) {
   var cell3 = row.insertCell(2);
   var cell4 = row.insertCell(3);
   cell1.innerHTML = element.id;
-  cell2.innerHTML = element.name;
-  cell3.innerHTML = element.hourlyRate;
-  cell4.innerHTML = element.enrollDate;
+  if (element.name != null) cell2.innerHTML = element.name;
+  else cell2.innerHTML = element.employee.name;
+  if (element.name != null) cell3.innerHTML = element.hourlyRate;
+  else cell3.innerHTML = element.checkIn;
+  cell3.innerHTML = moment().format("MMMM Do YYYY, h:mm:ss A");
+  if (element.name != null) cell4.innerHTML = element.enrollDate;
+  else cell4.innerHTML = element.checkOut;
+  cell4.innerHTML = moment().format("MMMM Do YYYY, h:mm:ss A");
 }
 
 function ClearTable() {
