@@ -157,7 +157,7 @@ function GetHoursPeriod(employeeHoursList, id, startDate, endDate) {
   if (Math.abs(new Date(startDate)) <= Math.abs(new Date(endDate))) {
     var total = 0;
     employeeHoursList.forEach((element) => {
-      if (element.employee.id == id) {
+      if (element.employee.id == id || (id = "All")) {
         if (
           Math.abs(new Date(element.checkIn)) >=
             Math.abs(new Date(startDate)) &&
@@ -166,7 +166,6 @@ function GetHoursPeriod(employeeHoursList, id, startDate, endDate) {
           Math.abs(new Date(element.checkIn)) <= Math.abs(new Date(endDate)) &&
           Math.abs(new Date(element.checkOut)) <= Math.abs(new Date(endDate))
         ) {
-          console.log("da");
           var diff = Math.abs(
             new Date(element.checkOut) - new Date(element.checkIn)
           );
