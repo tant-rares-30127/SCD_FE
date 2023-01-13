@@ -56,6 +56,24 @@ document
     });
   });
 
+document
+  .getElementById("startDate")
+  .addEventListener("change", async function (e) {
+    var startDate = document.getElementById("startDate").value;
+    var endDate = document.getElementById("endDate").value;
+    var id = document.getElementById("employees").value;
+    GetHoursPeriod(employeeHoursList, id, startDate, endDate);
+  });
+
+document
+  .getElementById("endDate")
+  .addEventListener("change", async function (e) {
+    var startDate = document.getElementById("startDate").value;
+    var endDate = document.getElementById("endDate").value;
+    var id = document.getElementById("employees").value;
+    GetHoursPeriod(employeeHoursList, id, startDate, endDate);
+  });
+
 function SendElement(elementSent) {
   employeesList.forEach((element) => {
     if (elementSent.options[elementSent.selectedIndex].text == element.name) {
@@ -133,4 +151,30 @@ function CalculateHoursEmployee(employeeHoursList, name) {
     }
   });
   document.getElementById("hours").innerHTML = Math.round(total);
+}
+
+function GetHoursPeriod(employeeHoursList, id, startDate, endDate) {
+  if (Math.abs(new Date(startDate)) <= Math.abs(new Date(endDate))) {
+    var total = 0;
+    employeeHoursList.forEach((element) => {
+      if (element.employee.id == id) {
+        if (
+          Math.abs(new Date(element.checkIn)) >=
+            Math.abs(new Date(startDate)) &&
+          Math.abs(new Date(element.checkOut)) >=
+            Math.abs(new Date(startDate)) &&
+          Math.abs(new Date(element.checkIn)) <= Math.abs(new Date(endDate)) &&
+          Math.abs(new Date(element.checkOut)) <= Math.abs(new Date(endDate))
+        ) {
+          console.log("da");
+          var diff = Math.abs(
+            new Date(element.checkOut) - new Date(element.checkIn)
+          );
+          diff = diff / 3600000;
+          total = total + diff;
+        }
+      }
+    });
+    document.getElementById("hours").innerHTML = Math.round(total);
+  }
 }
